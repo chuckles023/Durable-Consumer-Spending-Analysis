@@ -180,6 +180,6 @@ From the research I can determine that excess household savings are in fact goin
 
 2. [**https://www.frbsf.org/research-and-insights/data-and-indicators/pandemic-era-excess-savings/**](https://www.frbsf.org/research-and-insights/data-and-indicators/pandemic-era-excess-savings/)
 
-3. **https://www.federalreserve.gov/econres/notes/feds-notes/the-unusual-composition-of-demand- during-the-pandemic-20210114.htm**
+3. [**https://www.federalreserve.gov/econres/notes/feds-notes/the-unusual-composition-of-demand-during-the-pandemic-20210114.html**](https://www.federalreserve.gov/econres/notes/feds-notes/the-unusual-composition-of-demand-during-the-pandemic-20210114.html)
 
-4. **https://www.wsj.com/articles/consumers-are-pivoting-spending-to-services-like-dining-and-travel- 11643797808**
+4. [**https://www.wsj.com/articles/consumers-are-pivoting-spending-to-services-like-dining-and-travel-11643797808**](https://www.wsj.com/articles/consumers-are-pivoting-spending-to-services-like-dining-and-travel-11643797808)
