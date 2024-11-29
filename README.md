@@ -1,4 +1,4 @@
-**Post Pandemic Durable Consumer Spending Analysis**  
+# Post Pandemic Durable Consumer Spending Analysis
 March 21 2024
 
 Durable goods play an important role in forecasting demand and understanding consumer behavior.  Durable goods are physical products with longer life spans and are associated with significant investment and infrequent purchase cycles.  They are very sensitive to economic conditions, making them a good indicator of consumer confidence.  As the economy recovers from the Covid-19 downturn, understanding how durable goods will perform over the next 5 years can be important to inventory decision making, helping businesses align supply with shifting customer demand.  
@@ -7,19 +7,19 @@ An important aspect of the pandemic and ensuing economic downturn was the effect
 
 In January 2021, the FED released a report discussing demand during the pandemic.  They found that during most recessions, household spending on goods and housing tends to fall and services spending tends to respond weakly to the business cycle.  Surprisingly, the opposite was true during the pandemic, where services spending remained weak for multiple quarters while goods spending and housing investment were able to rebound and rise above pre-pandemic levels rather quickly.  One main reason for this observation was the role of social distancing in how consumers were behaving during the recession.  
 
-	According to the FED, two metrics for housing activity, new construction and home sales, saw an initial drop at the start of the pandemic but recovered quickly and rose above pre-pandemic levels.  A combination of different factors led to the resilience in the market.  Record low mortgage rates and the availability of online or limited contact tools for home buying encouraged activity.  New homebuyers were also more likely to have relatively high income, a sect of employees which experienced less unemployment comparatively.  These higher income households make up most of the effect in the rebound of housing activity as existing home sale growth is far greater in sales of $500,000+ compared to lower prices.  Ultimately, the characteristics of the pandemic changed people’s relationships with their home, maintaining and strengthening the market.  
+According to the FED, two metrics for housing activity, new construction and home sales, saw an initial drop at the start of the pandemic but recovered quickly and rose above pre-pandemic levels.  A combination of different factors led to the resilience in the market.  Record low mortgage rates and the availability of online or limited contact tools for home buying encouraged activity.  New homebuyers were also more likely to have relatively high income, a sect of employees which experienced less unemployment comparatively.  These higher income households make up most of the effect in the rebound of housing activity as existing home sale growth is far greater in sales of $500,000+ compared to lower prices.  Ultimately, the characteristics of the pandemic changed people’s relationships with their home, maintaining and strengthening the market.  
 
 Despite restrictions on leaving home, spending from CARES Act stimulus checks resembled pre-pandemic patterns, with a notable increase in goods spending following the payout of stimulus checks, especially online. While spending on durable goods initially fell below pre-COVID levels, it eventually surpassed expectations by the end of 2020\.  The effects of the shutdown caused consumers to shift from using their disposable income to purchase services towards a focus on the purchase of goods.  The pandemic made it much harder to eat out and travel.  Now in a post pandemic era, we are seeing a reversion of this trend.  Two years before the pandemic, personal consumption of durable and nondurable goods was at 31%, increasing to 36% in March and April of 2021\.  After the vaccine was released, we saw a decrease back down to 34% in December 2021\.  Consumer spending became strained due to supply chain constraints, rising prices from inflation, and diminishing government stimulus funds.  Travel and dining also saw an increase as people became more comfortable going out and social distancing measures were withdrawn.  
 
 A study in early 2023 by Abdelrahman and Oliveira examined Pandemic Era excess savings which are defined as the difference between actual savings and the pre-pandemic trend.  What they found was that a combination of fiscal support from the government and a drop in household spending caused household savings to see a rise in the overall US economy, well above the pre-pandemic trend line.  When economic activity began to recover after the lockdown, households used these savings to support their new spending.  By the end of 2021 these savings had started to dry up, dipping below the pre pandemic trend.  
 
-	Abdelrahman and Oliveira determined that by March 2023, only $500 billion of the $2.1 Trillion in pandemic savings in the economy remained. Data revisions released by the Bureau of Economic Analysis after their initial study showed that household spending increased and household disposable income decreased in the last quarter of 2022 and the 1st quarter of 2023\.  They also found that consumer spending continued to grow going into the 2nd quarter.  Their new estimates would have aggregate excess savings all the way down to $190 billion by June and all the way gone by the 3rd quarter of 2023\.  Since its peak in August 2021, personal savings has been below pre-pandemic trend.  Compared to other recessions, aggregate excess savings performed in a completely different manner, peaking around 12 to 18 months and tapering off by 36\.  In other recessions like 2008, 2001, or 1980, aggregate excess savings slowly recovered over the course of a few years in a steady and predictable fashion.  
+Abdelrahman and Oliveira determined that by March 2023, only $500 billion of the $2.1 Trillion in pandemic savings in the economy remained. Data revisions released by the Bureau of Economic Analysis after their initial study showed that household spending increased and household disposable income decreased in the last quarter of 2022 and the 1st quarter of 2023\.  They also found that consumer spending continued to grow going into the 2nd quarter.  Their new estimates would have aggregate excess savings all the way down to $190 billion by June and all the way gone by the 3rd quarter of 2023\.  Since its peak in August 2021, personal savings has been below pre-pandemic trend.  Compared to other recessions, aggregate excess savings performed in a completely different manner, peaking around 12 to 18 months and tapering off by 36\.  In other recessions like 2008, 2001, or 1980, aggregate excess savings slowly recovered over the course of a few years in a steady and predictable fashion.  
 
-**Method:**
+# Method:
 
 To predict the growth of consumer spending over the next 12 months, we will use the metric PCEDG which measures personal consumption expenditures on durable goods.  We will create 2 competing models, one with a deterministic trend and one with a stochastic trend and forecast PCEDG. They will be trained on the PCEDG time series dating up to the 2008 financial crisis.  Then we will use the Granger Newbold test to determine which model is more accurate and use that model to forecast PCEDG over the next 12 months.  
 
-**Econometric Analysis:**
+# Econometric Analysis:
 
 **![][image1]**  
 **A graph of PCEDG (1984 \- Present)**  
@@ -31,7 +31,7 @@ To predict the growth of consumer spending over the next 12 months, we will use 
 
 **First we run a Dickey-Fuller Unit Root Test on 2 variables to determine if there is a unit root in the data.  LPCE takes the log of PCEDG to stabilize variance in the data.  DIFFPCE is the first difference of LPCE which further removes trends from the data.  The T statistic from the test on the left is 0.52263, greater than the critical value, so we fail to reject the null hypothesis of a unit root in the LPCE series.  We now know that the data has a stochastic trend.  The T statistic of the test on the right is \-14.4328, less than the critical value, so we reject the null hypothesis of a unit root.  We have removed the trend from the data.**      
 
-1. **Consumer Goods Forecast using a Deterministic Trend**
+## Modeling Personal Consumption Expenditures(durable goods) using a Deterministic Trend
 
 Linear Regression \- Estimation by Least Squares  
 Dependent Variable LPCE  
@@ -77,7 +77,7 @@ Theil Inequality Measure     0.008164
   Variance                   0.372274  
   Covariance                 0.020719
 
-**Modeling Personal Consumption Expenditures(durable goods) Using an ARIMA Model:**
+## Modeling Personal Consumption Expenditures(durable goods) Using an Stochastic Trend:
 
 Box-Jenkins \- Estimation by LS Gauss-Newton  
 Convergence in    42 Iterations. Final criterion was  0.0000071 \<=  0.0000100
@@ -124,7 +124,7 @@ Theil Inequality Measure     0.001790
   Variance                   0.000000  
   Covariance                 0.324168
 
-**Comparing the 2 models using the Granger-Newbold Test:**
+## Comparing the 2 models using the Granger-Newbold Test:
 
 Granger-Newbold Forecast Comparison Test  
 Forecasts of LPCE over 2009:02 to 2014:12
@@ -141,7 +141,7 @@ PCEFOR2   \-20.1132 1.00000
 
 When comparing the 2 models, we find that the stochastic trend proves to be a better model at predicting consumer expenditure through the test statistic for the Granger-Newbold test and when comparing the errors, the stochastic trend also has a higher q statistic.  
 
-**Forecasting 2024-2029 using the ARIMA MODEL:**
+## Forecasting 2024-2029 using the ARIMA MODEL:
 
 Box-Jenkins \- Estimation by LS Gauss-Newton  
 Convergence in    18 Iterations. Final criterion was  0.0000059 \<=  0.0000100
@@ -183,4 +183,3 @@ From the research I can determine that excess household savings are in fact goin
 3. **https://www.federalreserve.gov/econres/notes/feds-notes/the-unusual-composition-of-demand- during-the-pandemic-20210114.htm**
 
 4. **https://www.wsj.com/articles/consumers-are-pivoting-spending-to-services-like-dining-and-travel- 11643797808**
-
