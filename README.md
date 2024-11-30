@@ -1,4 +1,6 @@
 # Post Pandemic Durable Consumer Spending Analysis
+
+
 March 21 2024
 
 Durable goods play an important role in forecasting demand and understanding consumer behavior.  Durable goods are physical products with longer life spans and are associated with significant investment and infrequent purchase cycles.  They are very sensitive to economic conditions, making them a good indicator of consumer confidence.  As the economy recovers from the Covid-19 downturn, understanding how durable goods will perform over the next 5 years can be important to inventory decision making, helping businesses align supply with shifting customer demand.  
@@ -15,11 +17,11 @@ A study in early 2023 by Abdelrahman and Oliveira examined Pandemic Era excess s
 
 Abdelrahman and Oliveira determined that by March 2023, only $500 billion of the $2.1 Trillion in pandemic savings in the economy remained. Data revisions released by the Bureau of Economic Analysis after their initial study showed that household spending increased and household disposable income decreased in the last quarter of 2022 and the 1st quarter of 2023\.  They also found that consumer spending continued to grow going into the 2nd quarter.  Their new estimates would have aggregate excess savings all the way down to $190 billion by June and all the way gone by the 3rd quarter of 2023\.  Since its peak in August 2021, personal savings has been below pre-pandemic trend.  Compared to other recessions, aggregate excess savings performed in a completely different manner, peaking around 12 to 18 months and tapering off by 36\.  In other recessions like 2008, 2001, or 1980, aggregate excess savings slowly recovered over the course of a few years in a steady and predictable fashion.  
 
-# Method:
+## Method:
 
 To predict the growth of consumer spending over the next 12 months, we will use the metric PCEDG which measures personal consumption expenditures on durable goods.  We will create 2 competing models, one with a deterministic trend and one with a stochastic trend and forecast PCEDG. They will be trained on the PCEDG time series dating up to the 2008 financial crisis.  Then we will use the Granger Newbold test to determine which model is more accurate and use that model to forecast PCEDG over the next 12 months.  
 
-# Econometric Analysis:
+## Econometric Analysis:
 
 **![][image1]**  
 **A graph of PCEDG (1984 \- Present)**  
@@ -33,6 +35,7 @@ To predict the growth of consumer spending over the next 12 months, we will use 
 
 ## Modeling Personal Consumption Expenditures(durable goods) using a Deterministic Trend
 
+```
 Linear Regression \- Estimation by Least Squares  
 Dependent Variable LPCE  
 Monthly Data From 1984:01 To 2009:01  
@@ -51,14 +54,15 @@ Log Likelihood                       400.9554
 Durbin-Watson Statistic                0.1893
 
     Variable                        Coeff      Std Error      T-Stat      Signif  
-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
+-------------------------------------------------------------------------------------- 
 1\.  Constant                     1.4589368592 0.0494015165     29.53223  0.00000000  
 2\.  TREND                        0.0043741992 0.0000425050    102.91029  0.00000000
+```
 
 **This is the initial linear regression results of the Log of PCEDG.  Taking the Log of the original time series allows us to remove some of the trend from the data.**    
 **![][image2]![][image3]**  
 **This data is the result of fitting the model using the Box Jenkins ARMA model.  Using bjautofit to find the parameters AR=3 and MA=3.**  
-
+```
 Forecast Analysis for PCEFOR  
 From 2009:02 to 2014:12  
 Mean Error                 \-0.0887747  
@@ -76,9 +80,9 @@ Theil Inequality Measure     0.008164
   Bias                       0.607007  
   Variance                   0.372274  
   Covariance                 0.020719
-
+```
 ## Modeling Personal Consumption Expenditures(durable goods) Using an Stochastic Trend:
-
+```
 Box-Jenkins \- Estimation by LS Gauss-Newton  
 Convergence in    42 Iterations. Final criterion was  0.0000071 \<=  0.0000100
 
@@ -99,13 +103,14 @@ Q(36-4)                               23.8464
 Significance Level of Q             0.8499215
 
     Variable                        Coeff      Std Error      T-Stat      Signif  
-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
+-------------------------------------------------------------------------------------- 
 1\.  CONSTANT                      0.003639446  0.000864197      4.21136  0.00003372  
 2\.  AR{1}                         0.464862437  0.233597543      1.99001  0.04750909  
 3\.  MA{1}                        \-0.897620343  0.235492944     \-3.81167  0.00016793  
 4\.  MA{2}                         0.062120168  0.130665772      0.47541  0.63484348  
 5\.  MA{3}                         0.147139486  0.060113638      2.44769  0.01495840
-
+```
+```
 Forecast Analysis for PCEFOR2  
 From 2009:02 to 2014:12  
 Mean Error                 0.02069965  
@@ -123,7 +128,7 @@ Theil Inequality Measure     0.001790
   Bias                       0.675832  
   Variance                   0.000000  
   Covariance                 0.324168
-
+```
 ## Comparing the 2 models using the Granger-Newbold Test:
 
 Granger-Newbold Forecast Comparison Test  
@@ -142,7 +147,7 @@ PCEFOR2   \-20.1132 1.00000
 When comparing the 2 models, we find that the stochastic trend proves to be a better model at predicting consumer expenditure through the test statistic for the Granger-Newbold test and when comparing the errors, the stochastic trend also has a higher q statistic.  
 
 ## Forecasting 2024-2029 using the ARIMA MODEL:
-
+```
 Box-Jenkins \- Estimation by LS Gauss-Newton  
 Convergence in    18 Iterations. Final criterion was  0.0000059 \<=  0.0000100
 
@@ -163,13 +168,13 @@ Q(36-4)                               31.8843
 Significance Level of Q             0.4724967
 
     Variable                        Coeff      Std Error      T-Stat      Signif  
-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
+--------------------------------------------------------------------------------------
 1\.  CONSTANT                      0.003844793  0.000683903      5.62184  0.00000003  
 2\.  AR{1}                         0.290354553  0.484454476      0.59934  0.54922383  
 3\.  MA{1}                        \-0.556794226  0.485359352     \-1.14718  0.25187310  
 4\.  MA{2}                        \-0.137833740  0.137726044     \-1.00078  0.31743127  
 5\.  MA{3}                         0.082433978  0.107368024      0.76777  0.44299730
-
+```
 **Conclusion:**
 
 From the research I can determine that excess household savings are in fact going down, but I believe that they will deviate towards the trend and will recover over the next couple years as we see inflation cool down, as it was at its peak in June 2022\.  Consumer spending overall was very different during the pandemic which had an effect on how savings were used, which will also return to the pre-pandemic trend. With this information and our forecast showing a continued increase in consumer goods spending on durable goods, I think that we can make an investment decision to bet on a continued increase in consumer goods spending and we can assume that the market will not crash, barring a large unforeseen negative shock.  
