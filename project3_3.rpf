@@ -1,0 +1,230 @@
+calendar(m) 1900:1
+all 2025:12
+data(format=fred) * * usrec pcedg
+
+table(picture="*.##")
+
+compute startdate = 1984:1
+compute enddate = 2009:1
+compute forend = 2014:12
+
+inquire(series=pcedg) startseries endseries
+
+set trend = t
+log pcedg / lpce
+diff lpce / diffpce
+
+graph(style=line, header="Personal Consumption Expenditures: Durable Goods (PCEDG)") 1
+#lpce startdate endseries
+
+@dfunit(det=trend,method=aic) lpce startdate enddate
+@dfunit(det=trend,method=aic) diffpce startdate enddate
+
+@autocorr(header="") pcedg   startdate enddate
+@autocorr(header="") lpce    startdate enddate
+@autocorr(header="") diffpce startdate enddate
+
+*model as trend sationary
+
+linreg lpce startdate enddate resids
+#constant trend
+@regactfit
+@bjautofit(pmax=5, qmax=5, crit=sbc) lpce startdate enddate
+@bjautofit(pmax=5, qmax=5, crit=aic) lpce startdate enddate
+*
+boxjenk(constant,ar=3,ma=3,define=pcemodel,regressors) lpce startdate enddate resids
+# trend
+@armaroots(equation=pcemodel) lpce
+@regactfit
+@autocorr resids startdate enddate
+
+uforecast(equation=pcemodel,nostatic,stderrs=pcerrors,from=enddate+1,to=forend) pcefor
+set forupper enddate+1 forend = pcefor + 1.96 * pcerrors
+set forlower enddate+1 forend = pcefor - 1.96 * pcerrors
+@uforeerrors(theil) pcefor lpce
+
+set pcexp   = EXP(pcefor)
+set upperxp = EXP(forupper)
+set lowerxp = EXP(forlower)
+
+graph(style=line,vlabel="Billions of Dollars",header="Consumer Goods Spending", $
+   subheader="arma(3,3) with trend",overaly=fan, ovcount=2, ovsame) 4
+# pcedg enddate-20 forend 2
+# pcexp enddate+1 forend 3
+# upperxp enddate+1 forend 4
+# lowerxp enddate+1 forend 4
+
+*ARIMA MODEL
+
+@bjautofit(pmax=5, qmax=5, crit=sbc) diffpce startdate enddate
+@bjautofit(pmax=5, qmax=5, crit=aic) diffpce startdate enddate
+
+boxjenk(constant, ar=1, ma=3, diffs=1, define=pcemodel2) lpce startdate enddate resids2
+@armaroots(equation=pcemodel2) lpce
+@regactfit
+@autocorr resids2 startdate enddate
+
+uforecast(equation=pcemodel2,nostatic,stderrs=pceerrors2, from=enddate+1,to=forend) pcefor2
+set forupper2 enddate+1 forend = pcefor2 + 1.96 * pceerrors2
+set forlower2 enddate+1 forend = pcefor2 - 1.96 * pceerrors2
+@uforeerrors(theil) pcefor2 lpce
+
+set pcexp2   = EXP(pcefor2)
+set upperxp2 = EXP(forupper2)
+set lowerxp2 = EXP(forlower2)
+
+graph(style=line,vlabel="Billions of Dollars", header="Consumer Goods Spending",ovcount=2,ovsame, $
+   overlay=fan, subheader="arima(1,1,3)") 4
+# pcedg enddate-20 forend 2
+# pcexp2 enddate+1 forend 3
+# upperxp2 enddate+1 forend 4
+# lowerxp2 enddate+1 forend 4
+
+
+*forecast comparison
+
+graph(style=line,vlabel="", key=below,header="PCEDG, Stationairy vs. Stochastic Trend Models", $
+	klabel=||"pcedg"|"arma(3,3) with trend"|"arima(1,1,3)"||,subheader="forecast comparison") 3
+# pcedg enddate-20 forend
+# pcexp enddate+1 forend
+# pcexp2 enddate+1 forend
+
+
+@gnewbold lpce pcefor pcefor2
+* @gnewbold assumes forecast errors serially uncorrelated
+set error1 = pcefor - lpce
+set error2 = pcefor2 - lpce
+@autocorr error1
+@autocorr error2
+
+@dmariano(lags=6,lwindow=newey) pcedg pcexp pcexp2
+
+
+**********************
+*PREDICTING 2024 - 2029
+
+compute enddate2   = 2024:10
+compute forend2    = 2029:1
+
+@bjautofit(pmax=5, qmax=5, crit=sbc) diffpce startdate endseries
+@bjautofit(pmax=5, qmax=5, crit=aic) diffpce startdate endseries
+
+boxjenk(constant, ar=1, ma=3, diffs=1, define=pcemodel3) lpce startdate endseries resids3
+@armaroots(equation=pcemodel3) lpce
+@regactfit
+@autocorr resids3 startdate endseries
+
+
+
+*Forecast 1 Dynamic:
+
+UFORECAST(FROM = 2024:10, TO = 2029:01, EQUATION = pcemodel3, STDERRS = pceerrors3) pcefor3
+set low953 2024:10 2029:1 = pcefor3 + %invnormal(.025) * pceerrors3
+set up953  2024:10 2029:1 = pcefor3 + %invnormal(.975) * pceerrors3
+set up803  2024:10 2029:1 = pcefor3 + %invnormal(.1) * pceerrors3
+set low803 2024:10 2029:1 = pcefor3 + %invnormal(.9) * pceerrors3
+
+
+@uforeerrors(theil) pcefor3 lpce
+
+set pcexp3   2024:10 2029:01 = EXP(pcefor3)
+set low953xp 2024:10 2029:01 = EXP(low953)
+set low803xp 2024:10 2029:01 = EXP(low803)
+set up803xp  2024:10 2029:01 = EXP(up803)
+set up953xp  2024:10 2029:01 = EXP(up953)
+
+
+graph(style=line,vlabel="Billions of Dollars", header="consumer goods spending",ovcount=4,ovsame, $
+   overlay=fan) 6
+# pcedg 2022:1 * 2
+# pcexp3 * * 3
+# low953xp * * 4
+# up953xp * * 4
+# low803xp * * 4
+# up803xp * * 4
+
+display low953xp 2024:10 *
+
+*Forecast 3 Random Sim:
+
+UFORECAST(FROM=2024:10,TO=2029:01,EQUATION=pcemodel3,SIMULATE,STDERRS=pceerrors5) pcefor5
+display pceerrors5
+
+set low955 2024:10 2029:1 = pcefor5 + %invnormal(.025) * pceerrors5
+set up955  2024:10 2029:1 = pcefor5 + %invnormal(.975) * pceerrors5
+set up805  2024:10 2029:1 = pcefor5 + %invnormal(.1) * pceerrors5
+set low805 2024:10 2029:1 = pcefor5 + %invnormal(.9) * pceerrors5
+
+set pcexp5   2024:10 2029:01 = EXP(pcefor5)
+set low955xp 2024:10 2029:01 = EXP(low955)
+set low805xp 2024:10 2029:01 = EXP(low805)
+set up805xp  2024:10 2029:01 = EXP(up805)
+set up955xp  2024:10 2029:01 = EXP(up955)
+
+graph(style=line,vlabel="Billions of Dollars", header="consumer goods spending",ovcount=4,ovsame, $
+   overlay=fan) 6
+# pcedg 2022:1 * 2
+# pcexp5 * * 3
+# up955xp * * 4
+# low805xp * * 4
+# low955xp * * 4
+# up805xp * * 4
+
+
+*Forecast 4 Bootstrap Sim:
+
+UFORECAST(FROM=2024:10,TO=2029:01,EQUATION=PCEMODEL3,BOOTSTRAP,STDERRS=pceerrors6) pcefor6
+
+
+set low956 2024:10 2029:1 = pcefor6 + %invnormal(.025) * pceerrors6
+set up956  2024:10 2029:1 = pcefor6 + %invnormal(.975) * pceerrors6
+set up806  2024:10 2029:1 = pcefor6 + %invnormal(.1) * pceerrors6
+set low806 2024:10 2029:1 = pcefor6 + %invnormal(.9) * pceerrors6
+
+set pcexp6   2024:10 2029:01 = EXP(pcefor6)
+set low956xp 2024:10 2029:01 = EXP(low956)
+set low806xp 2024:10 2029:01 = EXP(low806)
+set up806xp  2024:10 2029:01 = EXP(up806)
+set up956xp  2024:10 2029:01 = EXP(up956)
+
+graph(style=line,vlabel="Billions of Dollars", header="consumer goods spending",ovcount=4,ovsame, $
+   overlay=fan) 6
+# pcedg 2022:1 * 2
+# pcexp6 * * 3
+# up956xp * * 4
+# low806xp * * 4
+# low956xp * * 4
+# up806xp * * 4
+
+display low806xp
+
+*Probability Conclusion
+*6 months 1 year 5 year
+
+*Random SIm
+display "forecast for" %datelabel(2025:05) pcexp5(2025:05)
+display "forecast for" %datelabel(2025:11) pcexp5(2025:11)
+display "forecast for" %datelabel(forend2) pcexp5(2029:01)
+
+compute probless = %cdf(((1.2-pcefor5(forend2))/pceerrors5(forend2)))
+display "probability that actual outcome is equal to or less than 1.2"  probless
+
+compute probrmore = (1 - %cdf((1.8-pcefor5(forend2))/pceerrors5(forend2)))
+display "probability that actual outcome is equal to or more than 1.8"  probrmore
+
+*Bootstrap
+display "forecast for" %datelabel(2025:05) pcexp6(2025:05)
+display "forecast for" %datelabel(2025:11) pcexp6(2025:11)
+display "forecast for" %datelabel(forend2) pcexp6(2029:01)
+
+
+compute probless = %cdf(((1.2-pcefor6(forend2))/pceerrors6(forend2)))
+display "probability that actual outcome is equal to or less than 1.2"  probless
+
+compute probrmore = (1 - %cdf((1.8-pcefor6(forend2))/pceerrors6(forend2)))
+display "probability that actual outcome is equal to or more than 1.8"  probrmore
+
+
+
+
+
