@@ -87,7 +87,7 @@ The stochastic trend ARIMA (1,1,3) model for LPCE exhibits:
 
  
 
-| ![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi37.png] | Forecast Analysis for PCEFOR2 From 2009:02 to 2014:12 Mean Error                 0.02069965 Mean Absolute Error        0.02227465 Root Mean Square Error     0.02517930 Mean Square Error            0.000634 Theil's U                    7.002004 Mean Pct Error               0.002937 Mean Abs Pct Error           0.003164 Root Mean Square Pct Error   0.003579 Theil's Relative U           7.045567 Theil Inequality Measure     0.001790   Bias                       0.675832   Variance                   0.000000   Covariance                 0.324168  |
+| ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi37.png"] | Forecast Analysis for PCEFOR2 From 2009:02 to 2014:12 Mean Error                 0.02069965 Mean Absolute Error        0.02227465 Root Mean Square Error     0.02517930 Mean Square Error            0.000634 Theil's U                    7.002004 Mean Pct Error               0.002937 Mean Abs Pct Error           0.003164 Root Mean Square Pct Error   0.003579 Theil's Relative U           7.045567 Theil Inequality Measure     0.001790   Bias                       0.675832   Variance                   0.000000   Covariance                 0.324168  |
 | :---- | :---- |
 
 Forecast analysis for ARIMA (1,1,3) indicates:
@@ -99,7 +99,7 @@ Forecast analysis for ARIMA (1,1,3) indicates:
 
 ## Model Comparisons:
 
-**![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi38.png]**  
+**![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi38.png"]**  
 **Granger-Newbold Test:**
 
 Granger-Newbold Forecast Comparison Test  
@@ -109,7 +109,7 @@ Forecast Test Stat P(GN\>x)
 PCEFOR     20.1132 0.00000  
 PCEFOR2   \-20.1132 1.00000
 
-| Deterministic Trend:![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi39.png] | Stochastic Trend:![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi310.png] |
+| Deterministic Trend:![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi39.png"] | Stochastic Trend:![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi310.png"] |
 | :---- | :---- |
 | Correlations of PCEFOR Errors Monthly Data From 2009:02 To 2014:12 Lag     ACF        PACF    1   0.970391   0.970391    2   0.954876   0.226546    3   0.947539   0.199033    4   0.934967  \-0.005741    5   0.920045  \-0.046836    6   0.904972  \-0.054346    7   0.896462   0.088038    8   0.872603  \-0.236849 Ljung-Box Q-Statistics Lags  Statistic Signif Lvl    1     69.723   0.000000    2    138.213   0.000000    3    206.646   0.000000    4    274.270   0.000000    5    340.744   0.000000    6    406.048   0.000000    7    471.131   0.000000    8    533.774   0.000000 | Correlations of PCEFOR2 Errors Monthly Data From 2009:02 To 2014:12 Lag     ACF        PACF    1    0.32363    0.32363    2    0.05188   \-0.05904    3    0.03070    0.03589    4   \-0.07522   \-0.10519    5   \-0.19145   \-0.15039    6   \-0.23875   \-0.15164    7   \-0.08414    0.04367    8   \-0.19210   \-0.20994 Ljung-Box Q-Statistics Lags  Statistic Signif Lvl    1      7.755   0.005357    2      7.957   0.018713    3      8.029   0.045419    4      8.467   0.075908    5     11.345   0.044953    6     15.890   0.014355    7     16.464   0.021201    8     19.500   0.012403 |
 
@@ -132,7 +132,7 @@ The stochastic model (MSE \= 807\) significantly outperforms the deterministic m
 
 | Box-Jenkins \- Estimation by LS Gauss-Newton Convergence in    18 Iterations. Final criterion was  0.0000059 \<=  0.0000100 Dependent Variable LPCE, differenced 1 times Monthly Data From 1984:01 To 2024:10 Usable Observations                       490 Degrees of Freedom                        485 Centered R^2                        0.9969376 R-Bar^2                             0.9969123 Uncentered R^2                      0.9999839 Mean of Dependent Variable       6.8148112637 Std Error of Dependent Variable  0.4961822306 Standard Error of Estimate       0.0275712126 Sum of Squared Residuals         0.3686833052 Log Likelihood                      1066.8147 Durbin-Watson Statistic                1.9965 Q(36-4)                               31.8843 Significance Level of Q             0.4724967     Variable                        Coeff      Std Error      T-Stat      Signif \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 1\.  CONSTANT                      0.003844793  0.000683903      5.62184  0.00000003 2\.  AR{1}                         0.290354553  0.484454476      0.59934  0.54922383 3\.  MA{1}                        \-0.556794226  0.485359352     \-1.14718  0.25187310 4\.  MA{2}                        \-0.137833740  0.137726044     \-1.00078  0.31743127 5\.  MA{3}                         0.082433978  0.107368024      0.76777  0.44299730  | Inverse Roots of AR and MA polynomials Absolute Value of MA Roots 1   0.379356 2   0.425718 3   0.510432 Absolute Value of AR Roots 1   0.290355 2   1.000000  |
 | :---- | :---- |
-| ![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi311.png] | ![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi312.png] |
+| ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi311.png"] | ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi312.png"] |
 
 ### Forecasts:
 
@@ -140,14 +140,14 @@ The stochastic model (MSE \= 807\) significantly outperforms the deterministic m
 forecast for 2025:05    2283.81536  
 forecast for 2025:11    2240.53694  
 forecast for 2029:01    2614.70652  
-![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi313.png]
+![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi313.png"]
 
 **Bootstrap Forecast:**  
 forecast for 2025:05    2376.59793  
 forecast for 2025:11    2529.02747  
 forecast for 2029:01    2736.78437
 
-![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi314.png]
+![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi314.png"]
 
 ## Conclusion:
 
