@@ -49,6 +49,18 @@ To predict the growth of consumer spending over the next 5 years, we will use th
 |10%            \-3.13610 | 10%           \-3.1361 |
 |T-Statistic     0.52263  | T-Statistic  \-14.4328\*\*  |
 | :---- | :---- |
+| Dickey-Fuller Unit Root Test, Series LPCE | Dickey-Fuller Unit Root Test, Series DIFFPCE|
+|-------------------------------------------|---------------------------------------------|
+| Regression Run From 1984:05 to 2009:01    | Regression Run From 1984:04 to 2009:01      |
+| Observations        298                   | Observations        299                     |
+| With intercept and trend                  | With intercept and trend                    |
+| With 3 lags chosen from 4 by AIC          | With 2 lags chosen from 4 by AIC            |
+| Null is unit root. Reject in left tail.   | Null is unit root. Reject in left tail.     |
+| **Sig Level**    **Crit Value**           | **Sig Level**    **Crit Value**             |
+| 1%(\*\*)           \-3.99236                | 1%(\*\*)          \-3.9923                    |
+| 5%(\*)            \-3.42635                | 5%(*)           \-3.4263                    |
+| 10%              \-3.13610                | 10%             \-3.1361                    |
+| T-Statistic     0.52263                   | T-Statistic     \-14.4328\*\*                 |
 
 First we run a Dickey-Fuller Unit Root Test on 2 variables to determine if there is a unit root in the data.  LPCE takes the log of PCEDG to stabilize variance in the data.  DIFFPCE is the first difference of LPCE which further removes trends from the data.  The T statistic from the test on the left is 0.52263, greater than the critical value, so we fail to reject the null hypothesis of a unit root in the LPCE series.  We now know that the data has a stochastic trend.  The T statistic of the test on the right is \-14.4328, less than the critical value, so we reject the null hypothesis of a unit root.  We have removed the trend from the data.      
 
