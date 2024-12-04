@@ -117,7 +117,6 @@ Theil Inequality Measure     0.008164
   Bias                       0.607007
   Variance                   0.372274
   Covariance                 0.020719
-
 ```
 
 Forecast analysis reveals:
@@ -281,7 +280,7 @@ Lags  Statistic Signif Lvl
    7     16.464   0.021201
    8     19.500   0.012403
 
-'''
+```
 ```
 Diebold-Mariano Forecast Comparison Test  
 Forecasts of PCEDG over 2009:02 to 2014:12  
