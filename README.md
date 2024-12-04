@@ -99,6 +99,7 @@ The deterministic trend ARMA (3,3) model for the log of personal consumption exp
 <p align="center">
   <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi34.png" width="70%">
 </p>
+
 ```
 Forecast Analysis for PCEFOR
 From 2009:02 to 2014:12
@@ -129,7 +130,7 @@ Forecast analysis reveals:
 
 ## Modeling Personal Consumption Expenditures using a Stochastic Trend ARIMA (1,1,3):
 
-'''
+```
 Box-Jenkins - Estimation by LS Gauss-Newton
 Convergence in    42 Iterations. Final criterion was  0.0000071 <=  0.0000100
 
@@ -150,7 +151,7 @@ Q(36-4)                               23.8464
 Significance Level of Q             0.8499215
 
     Variable                        Coeff      Std Error      T-Stat      Signif
-************************************************************************************
+-----------------------------------------------------------------------------------
 1.  CONSTANT                      0.003639446  0.000864197      4.21136  0.00003372
 2.  AR{1}                         0.464862437  0.233597543      1.99001  0.04750909
 3.  MA{1}                        -0.897620343  0.235492944     -3.81167  0.00016793
@@ -167,8 +168,8 @@ Absolute Value of MA Roots
 Absolute Value of AR Roots
 1   0.464862
 2   1.000000
+```
 
-'''
 
 <p align="center">
   <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi35.png" width="45%">
@@ -185,6 +186,7 @@ The stochastic trend ARIMA (1,1,3) model for LPCE exhibits:
 <p align="center">
   <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi37.png" width="70%">
 </p>
+
 ```
 Forecast Analysis for PCEFOR2
 From 2009:02 to 2014:12
@@ -213,6 +215,7 @@ Forecast analysis for ARIMA (1,1,3) indicates:
  
 
 ## Model Comparisons:
+
 <p align="center">
   <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi38.png" width="70%">
 </p>
@@ -231,7 +234,7 @@ PCEFOR2   \-20.1132 1.00000
   <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi310.png" width="45%">
 </p>
 
-'''
+```
 Correlations of PCEFOR Errors
 Monthly Data From 2009:02 To 2014:12
 
@@ -280,8 +283,8 @@ Lags  Statistic Signif Lvl
    7     16.464   0.021201
    8     19.500   0.012403
 
-```
-```
+
+
 Diebold-Mariano Forecast Comparison Test  
 Forecasts of PCEDG over 2009:02 to 2014:12  
 Test Statistics Corrected for Serial Correlation of 6 lags  
@@ -289,6 +292,7 @@ Forecast    MSE     Test Stat P(DM\>x)
 PCEXP    16169.1851    2.8794 0.00199  
 PCEXP2     806.9966   \-2.8794 0.99801
 ```
+
 Granger-Newbold Test:
 A test statistic of 20.1132 for the deterministic model and \-20.1132 for the stochastic model confirms significant differences in forecasting accuracy. The stochastic trend model is superior, as its errors exhibit lower autocorrelation and variance.
 
@@ -298,6 +302,7 @@ The stochastic model (MSE \= 807\) significantly outperforms the deterministic m
 ## Forecasting 2024-2029 using the ARIMA Model:
 
 ### Model:
+
 ```
 Box-Jenkins - Estimation by LS Gauss-Newton
 Convergence in    18 Iterations. Final criterion was  0.0000059 <=  0.0000100
@@ -335,8 +340,8 @@ Absolute Value of MA Roots
 Absolute Value of AR Roots
 1   0.290355
 2   1.000000
-
 ```
+
 
 
 <p align="center">
@@ -345,29 +350,34 @@ Absolute Value of AR Roots
 </p>
 
 ### Forecasts:
-```
+
+
 **Random Simulation Forecast:**  
 forecast for 2025:05    2283.81536  
 forecast for 2025:11    2240.53694  
 forecast for 2029:01    2614.70652 
-```
+
+
 <p align="center">
   <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi313.png" width="70%">
 </p>
-```
+
+
 **Bootstrap Forecast:**  
 forecast for 2025:05    2376.59793  
 forecast for 2025:11    2529.02747  
 forecast for 2029:01    2736.78437
-```
+
+
 <p align="center">
   <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi314.png" width="70%">
 </p>
+
 ## Conclusion:
 
 From the research I can determine that excess household savings are in fact going down, but I believe that they will deviate towards the trend and will recover over the next couple years as we see inflation cool down, as it was at its peak in June 2022\.  Consumer spending overall was very different during the pandemic which had an effect on how savings were used, which will also return to the pre-pandemic trend. The stochastic trend model predicts a sustained increase in durable goods spending through 2029, providing a robust basis for investment decisions. While uncertainties remain, such as potential economic shocks, the forecast supports confidence in market stability and growth in the durable goods sector.  
 
-**Sources:**
+## Sources:
 
 1. [**https://www.frbsf.org/research-and-insights/publications/economic-letter/2023/05/rise-and-fall-of-pandemic-excess-savings/**](https://www.frbsf.org/research-and-insights/publications/economic-letter/2023/05/rise-and-fall-of-pandemic-excess-savings/)
 
