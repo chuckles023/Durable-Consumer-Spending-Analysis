@@ -37,37 +37,53 @@ To predict the growth of consumer spending over the next 5 years, we will use th
 **Unit: Billions of Dollars**  
 **Frequency: Monthly**
 
-| Dickey-Fuller Unit Root Test, Series LPCE | Dickey-Fuller Unit Root Test, Series DIFFPCE |
-|Regression Run From 1984:05 to 2009:01 | Regression Run From 1984:04 to 2009:01 |
-|Observations        298 | Observations        299 |
-|With intercept and trend | With intercept and trend |
-|With 3 lags chosen from 4 by AIC | With 2 lags chosen from 4 by AIC |
-|Null is unit root. Reject in left tail. | Null is unit root. Reject in left tail. |
-|Sig Level    Crit Value | Sig Level    Crit Value |
-|1%(\*\*)         \-3.99236 | 1%(\*\*)        \-3.9923 |
-|5%(\*)          \-3.42635 | 5%(\*)         \-3.4263 |
-|10%            \-3.13610 | 10%           \-3.1361 |
-|T-Statistic     0.52263  | T-Statistic  \-14.4328\*\*  |
-| :---- | :---- |
-| Dickey-Fuller Unit Root Test, Series LPCE | Dickey-Fuller Unit Root Test, Series DIFFPCE|
-|-------------------------------------------|---------------------------------------------|
-| Regression Run From 1984:05 to 2009:01    | Regression Run From 1984:04 to 2009:01      |
-| Observations        298                   | Observations        299                     |
-| With intercept and trend                  | With intercept and trend                    |
-| With 3 lags chosen from 4 by AIC          | With 2 lags chosen from 4 by AIC            |
-| Null is unit root. Reject in left tail.   | Null is unit root. Reject in left tail.     |
-| **Sig Level**    **Crit Value**           | **Sig Level**    **Crit Value**             |
-| 1%(\*\*)           \-3.99236                | 1%(\*\*)          \-3.9923                    |
-| 5%(\*)            \-3.42635                | 5%(*)           \-3.4263                    |
-| 10%              \-3.13610                | 10%             \-3.1361                    |
-| T-Statistic     0.52263                   | T-Statistic     \-14.4328\*\*                 |
-
-First we run a Dickey-Fuller Unit Root Test on 2 variables to determine if there is a unit root in the data.  LPCE takes the log of PCEDG to stabilize variance in the data.  DIFFPCE is the first difference of LPCE which further removes trends from the data.  The T statistic from the test on the left is 0.52263, greater than the critical value, so we fail to reject the null hypothesis of a unit root in the LPCE series.  We now know that the data has a stochastic trend.  The T statistic of the test on the right is \-14.4328, less than the critical value, so we reject the null hypothesis of a unit root.  We have removed the trend from the data.      
-
 ## Modeling Personal Consumption using a Deterministic Trend ARMA (3,3):
 
-|  Box-Jenkins \- Estimation by LS Gauss-Newton NO CONVERGENCE IN 100 ITERATIONS LAST CRITERION WAS  0.0003008 TRY INCREASING ITERS OPTION Dependent Variable LPCE Monthly Data From 1984:01 To 2009:01 Usable Observations                       301 Degrees of Freedom                        293 Centered R^2                        0.9957698 R-Bar^2                             0.9956688 Uncentered R^2                      0.9999853 Mean of Dependent Variable       6.5286337876 Std Error of Dependent Variable  0.3860471760 Standard Error of Estimate       0.0254065885 Sum of Squared Residuals         0.1891299579 Log Likelihood                       682.4504 Durbin-Watson Statistic                2.0590 Q(36-6)                               24.9151 Significance Level of Q             0.7291489     Variable                        Coeff      Std Error      T-Stat      Signif \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 1\.  CONSTANT                        177.67946  11378.06246      0.01562  0.98755139 2\.  AR{1}                             0.89998      0.42986      2.09365  0.03715081 3\.  AR{2}                            \-0.13693      0.45329     \-0.30208  0.76280702 4\.  AR{3}                             0.23639      0.36665      0.64474  0.51960104 5\.  MA{1}                            \-0.31526      0.43410     \-0.72623  0.46827769 6\.  MA{2}                             0.07209      0.35221      0.20467  0.83797417 7\.  MA{3}                             0.00796      0.19433      0.04095  0.96736128 8\.  TREND                            \-0.04522      1.90340     \-0.02376  0.98106099 | Inverse Roots of AR and MA polynomials Absolute Value of MA Roots 1   0.077592 2   0.320262 3   0.320262 Absolute Value of AR Roots 1   0.486304 2   0.486304 3   0.999587 |
-| :---- | :---- |
+```
+ Box-Jenkins - Estimation by LS Gauss-Newton
+NO CONVERGENCE IN 100 ITERATIONS
+LAST CRITERION WAS  0.0003008
+TRY INCREASING ITERS OPTION
+
+Dependent Variable LPCE
+Monthly Data From 1984:01 To 2009:01
+Usable Observations                       301
+Degrees of Freedom                        293
+Centered R^2                        0.9957698
+R-Bar^2                             0.9956688
+Uncentered R^2                      0.9999853
+Mean of Dependent Variable       6.5286337876
+Std Error of Dependent Variable  0.3860471760
+Standard Error of Estimate       0.0254065885
+Sum of Squared Residuals         0.1891299579
+Log Likelihood                       682.4504
+Durbin-Watson Statistic                2.0590
+Q(36-6)                               24.9151
+Significance Level of Q             0.7291489
+
+    Variable                        Coeff      Std Error      T-Stat      Signif
+************************************************************************************
+1.  CONSTANT                        177.67946  11378.06246      0.01562  0.98755139
+2.  AR{1}                             0.89998      0.42986      2.09365  0.03715081
+3.  AR{2}                            -0.13693      0.45329     -0.30208  0.76280702
+4.  AR{3}                             0.23639      0.36665      0.64474  0.51960104
+5.  MA{1}                            -0.31526      0.43410     -0.72623  0.46827769
+6.  MA{2}                             0.07209      0.35221      0.20467  0.83797417
+7.  MA{3}                             0.00796      0.19433      0.04095  0.96736128
+8.  TREND                            -0.04522      1.90340     -0.02376  0.98106099
+
+Inverse Roots of AR and MA polynomials
+Absolute Value of MA Roots
+1   0.077592
+2   0.320262
+3   0.320262
+
+Absolute Value of AR Roots
+1   0.486304
+2   0.486304
+3   0.999587
+
+```
 
 <p align="center">
   <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi32.png" width="45%">
@@ -80,8 +96,29 @@ The deterministic trend ARMA (3,3) model for the log of personal consumption exp
 * AR(1): Statistically significant (p=0.037p=0.037), indicating a relationship between current and previous periods.
 * Other AR/MA Terms: Generally not significant, suggesting potential overfitting or issues in capturing underlying data dynamics. Despite high R2R2, the lack of significant coefficients raises concerns about the model's predictive power and robustness.
 
-| ![][https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi34.png] | Forecast Analysis for PCEFOR From 2009:02 to 2014:12 Mean Error                 \-0.0887747 Mean Absolute Error         0.0936523 Root Mean Square Error      0.1139442 Mean Square Error            0.012983 Theil's U                  153.145408 Mean Pct Error              \-0.012800 Mean Abs Pct Error           0.013504 Root Mean Square Pct Error   0.016431 Theil's Relative U         153.980148 Theil Inequality Measure     0.008164   Bias                       0.607007   Variance                   0.372274   Covariance                 0.020719  |
-| :---- | :---- |
+<p align="center">
+  <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi34.png" width="70%">
+</p>
+```
+Forecast Analysis for PCEFOR
+From 2009:02 to 2014:12
+Mean Error                 -0.0887747
+Mean Absolute Error         0.0936523
+Root Mean Square Error      0.1139442
+Mean Square Error            0.012983
+Theil's U                  153.145408
+
+Mean Pct Error              -0.012800
+Mean Abs Pct Error           0.013504
+Root Mean Square Pct Error   0.016431
+Theil's Relative U         153.980148
+
+Theil Inequality Measure     0.008164
+  Bias                       0.607007
+  Variance                   0.372274
+  Covariance                 0.020719
+
+```
 
 Forecast analysis reveals:
 
@@ -93,8 +130,46 @@ Forecast analysis reveals:
 
 ## Modeling Personal Consumption Expenditures using a Stochastic Trend ARIMA (1,1,3):
 
-| Box-Jenkins \- Estimation by LS Gauss-Newton Convergence in    42 Iterations. Final criterion was  0.0000071 \<=  0.0000100 Dependent Variable LPCE, differenced 1 times Monthly Data From 1984:01 To 2009:01 Usable Observations                       301 Degrees of Freedom                        296 Centered R^2                        0.9956981 R-Bar^2                             0.9956399 Uncentered R^2                      0.9999851 Mean of Dependent Variable       6.5286337876 Std Error of Dependent Variable  0.3860471760 Standard Error of Estimate       0.0254910500 Sum of Squared Residuals         0.1923389145 Log Likelihood                       679.9183 Durbin-Watson Statistic                1.9915 Q(36-4)                               23.8464 Significance Level of Q             0.8499215     Variable                        Coeff      Std Error      T-Stat      Signif \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 1\.  CONSTANT                      0.003639446  0.000864197      4.21136  0.00003372 2\.  AR{1}                         0.464862437  0.233597543      1.99001  0.04750909 3\.  MA{1}                        \-0.897620343  0.235492944     \-3.81167  0.00016793 4\.  MA{2}                         0.062120168  0.130665772      0.47541  0.63484348 5\.  MA{3}                         0.147139486  0.060113638      2.44769  0.01495840  | Inverse Roots of AR and MA polynomials Absolute Value of MA Roots 1   0.322716 2   0.675235 3   0.675235 Absolute Value of AR Roots 1   0.464862 2   1.000000 |
-| :---- | :---- |
+'''
+Box-Jenkins - Estimation by LS Gauss-Newton
+Convergence in    42 Iterations. Final criterion was  0.0000071 <=  0.0000100
+
+Dependent Variable LPCE, differenced 1 times
+Monthly Data From 1984:01 To 2009:01
+Usable Observations                       301
+Degrees of Freedom                        296
+Centered R^2                        0.9956981
+R-Bar^2                             0.9956399
+Uncentered R^2                      0.9999851
+Mean of Dependent Variable       6.5286337876
+Std Error of Dependent Variable  0.3860471760
+Standard Error of Estimate       0.0254910500
+Sum of Squared Residuals         0.1923389145
+Log Likelihood                       679.9183
+Durbin-Watson Statistic                1.9915
+Q(36-4)                               23.8464
+Significance Level of Q             0.8499215
+
+    Variable                        Coeff      Std Error      T-Stat      Signif
+************************************************************************************
+1.  CONSTANT                      0.003639446  0.000864197      4.21136  0.00003372
+2.  AR{1}                         0.464862437  0.233597543      1.99001  0.04750909
+3.  MA{1}                        -0.897620343  0.235492944     -3.81167  0.00016793
+4.  MA{2}                         0.062120168  0.130665772      0.47541  0.63484348
+5.  MA{3}                         0.147139486  0.060113638      2.44769  0.01495840
+
+Inverse Roots of AR and MA polynomials
+
+Absolute Value of MA Roots
+1   0.322716
+2   0.675235
+3   0.675235
+
+Absolute Value of AR Roots
+1   0.464862
+2   1.000000
+
+'''
 
 <p align="center">
   <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi35.png" width="45%">
@@ -108,9 +183,28 @@ The stochastic trend ARIMA (1,1,3) model for LPCE exhibits:
 * Stationarity Achieved: Differencing effectively removed the stochastic trend. This model is more parsimonious and statistically valid, suggesting it better captures the dynamics of LPCE.
 
  
+<p align="center">
+  <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi37.png" width="70%">
+</p>
+```
+Forecast Analysis for PCEFOR2
+From 2009:02 to 2014:12
+Mean Error                 0.02069965
+Mean Absolute Error        0.02227465
+Root Mean Square Error     0.02517930
+Mean Square Error            0.000634
+Theil's U                    7.002004
 
-| ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi37.png"] | Forecast Analysis for PCEFOR2 From 2009:02 to 2014:12 Mean Error                 0.02069965 Mean Absolute Error        0.02227465 Root Mean Square Error     0.02517930 Mean Square Error            0.000634 Theil's U                    7.002004 Mean Pct Error               0.002937 Mean Abs Pct Error           0.003164 Root Mean Square Pct Error   0.003579 Theil's Relative U           7.045567 Theil Inequality Measure     0.001790   Bias                       0.675832   Variance                   0.000000   Covariance                 0.324168  |
-| :---- | :---- |
+Mean Pct Error               0.002937
+Mean Abs Pct Error           0.003164
+Root Mean Square Pct Error   0.003579
+Theil's Relative U           7.045567
+
+Theil Inequality Measure     0.001790
+  Bias                       0.675832
+  Variance                   0.000000
+  Covariance                 0.324168
+```
 
 Forecast analysis for ARIMA (1,1,3) indicates:
 
@@ -120,8 +214,10 @@ Forecast analysis for ARIMA (1,1,3) indicates:
  
 
 ## Model Comparisons:
+<p align="center">
+  <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi38.png" width="70%">
+</p>
 
-**![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi38.png"]**  
 **Granger-Newbold Test:**
 
 Granger-Newbold Forecast Comparison Test  
@@ -131,17 +227,69 @@ Forecast Test Stat P(GN\>x)
 PCEFOR     20.1132 0.00000  
 PCEFOR2   \-20.1132 1.00000
 
-| Deterministic Trend:![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi39.png"] | Stochastic Trend:![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi310.png"] |
-| :---- | :---- |
-| Correlations of PCEFOR Errors Monthly Data From 2009:02 To 2014:12 Lag     ACF        PACF    1   0.970391   0.970391    2   0.954876   0.226546    3   0.947539   0.199033    4   0.934967  \-0.005741    5   0.920045  \-0.046836    6   0.904972  \-0.054346    7   0.896462   0.088038    8   0.872603  \-0.236849 Ljung-Box Q-Statistics Lags  Statistic Signif Lvl    1     69.723   0.000000    2    138.213   0.000000    3    206.646   0.000000    4    274.270   0.000000    5    340.744   0.000000    6    406.048   0.000000    7    471.131   0.000000    8    533.774   0.000000 | Correlations of PCEFOR2 Errors Monthly Data From 2009:02 To 2014:12 Lag     ACF        PACF    1    0.32363    0.32363    2    0.05188   \-0.05904    3    0.03070    0.03589    4   \-0.07522   \-0.10519    5   \-0.19145   \-0.15039    6   \-0.23875   \-0.15164    7   \-0.08414    0.04367    8   \-0.19210   \-0.20994 Ljung-Box Q-Statistics Lags  Statistic Signif Lvl    1      7.755   0.005357    2      7.957   0.018713    3      8.029   0.045419    4      8.467   0.075908    5     11.345   0.044953    6     15.890   0.014355    7     16.464   0.021201    8     19.500   0.012403 |
+<p align="center">
+  <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi39.png" width="45%">
+  <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi310.png" width="45%">
+</p>
 
+'''
+Correlations of PCEFOR Errors
+Monthly Data From 2009:02 To 2014:12
+
+Lag     ACF        PACF
+   1   0.970391   0.970391
+   2   0.954876   0.226546
+   3   0.947539   0.199033
+   4   0.934967  -0.005741
+   5   0.920045  -0.046836
+   6   0.904972  -0.054346
+   7   0.896462   0.088038
+   8   0.872603  -0.236849
+
+Ljung-Box Q-Statistics
+Lags  Statistic Signif Lvl
+   1     69.723   0.000000
+   2    138.213   0.000000
+   3    206.646   0.000000
+   4    274.270   0.000000
+   5    340.744   0.000000
+   6    406.048   0.000000
+   7    471.131   0.000000
+   8    533.774   0.000000
+
+Correlations of PCEFOR2 Errors
+Monthly Data From 2009:02 To 2014:12
+
+Lag     ACF        PACF
+   1    0.32363    0.32363
+   2    0.05188   -0.05904
+   3    0.03070    0.03589
+   4   -0.07522   -0.10519
+   5   -0.19145   -0.15039
+   6   -0.23875   -0.15164
+   7   -0.08414    0.04367
+   8   -0.19210   -0.20994
+
+Ljung-Box Q-Statistics
+Lags  Statistic Signif Lvl
+   1      7.755   0.005357
+   2      7.957   0.018713
+   3      8.029   0.045419
+   4      8.467   0.075908
+   5     11.345   0.044953
+   6     15.890   0.014355
+   7     16.464   0.021201
+   8     19.500   0.012403
+
+'''
+```
 Diebold-Mariano Forecast Comparison Test  
 Forecasts of PCEDG over 2009:02 to 2014:12  
 Test Statistics Corrected for Serial Correlation of 6 lags  
 Forecast    MSE     Test Stat P(DM\>x)  
 PCEXP    16169.1851    2.8794 0.00199  
 PCEXP2     806.9966   \-2.8794 0.99801
-
+```
 Granger-Newbold Test:
 A test statistic of 20.1132 for the deterministic model and \-20.1132 for the stochastic model confirms significant differences in forecasting accuracy. The stochastic trend model is superior, as its errors exhibit lower autocorrelation and variance.
 
@@ -151,26 +299,71 @@ The stochastic model (MSE \= 807\) significantly outperforms the deterministic m
 ## Forecasting 2024-2029 using the ARIMA Model:
 
 ### Model:
+```
+Box-Jenkins - Estimation by LS Gauss-Newton
+Convergence in    18 Iterations. Final criterion was  0.0000059 <=  0.0000100
 
-| Box-Jenkins \- Estimation by LS Gauss-Newton Convergence in    18 Iterations. Final criterion was  0.0000059 \<=  0.0000100 Dependent Variable LPCE, differenced 1 times Monthly Data From 1984:01 To 2024:10 Usable Observations                       490 Degrees of Freedom                        485 Centered R^2                        0.9969376 R-Bar^2                             0.9969123 Uncentered R^2                      0.9999839 Mean of Dependent Variable       6.8148112637 Std Error of Dependent Variable  0.4961822306 Standard Error of Estimate       0.0275712126 Sum of Squared Residuals         0.3686833052 Log Likelihood                      1066.8147 Durbin-Watson Statistic                1.9965 Q(36-4)                               31.8843 Significance Level of Q             0.4724967     Variable                        Coeff      Std Error      T-Stat      Signif \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 1\.  CONSTANT                      0.003844793  0.000683903      5.62184  0.00000003 2\.  AR{1}                         0.290354553  0.484454476      0.59934  0.54922383 3\.  MA{1}                        \-0.556794226  0.485359352     \-1.14718  0.25187310 4\.  MA{2}                        \-0.137833740  0.137726044     \-1.00078  0.31743127 5\.  MA{3}                         0.082433978  0.107368024      0.76777  0.44299730  | Inverse Roots of AR and MA polynomials Absolute Value of MA Roots 1   0.379356 2   0.425718 3   0.510432 Absolute Value of AR Roots 1   0.290355 2   1.000000  |
-| :---- | :---- |
-| ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi311.png"] | ![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi312.png"] |
+Dependent Variable LPCE, differenced 1 times
+Monthly Data From 1984:01 To 2024:10
+Usable Observations                       490
+Degrees of Freedom                        485
+Centered R^2                        0.9969376
+R-Bar^2                             0.9969123
+Uncentered R^2                      0.9999839
+Mean of Dependent Variable       6.8148112637
+Std Error of Dependent Variable  0.4961822306
+Standard Error of Estimate       0.0275712126
+Sum of Squared Residuals         0.3686833052
+Log Likelihood                      1066.8147
+Durbin-Watson Statistic                1.9965
+Q(36-4)                               31.8843
+Significance Level of Q             0.4724967
+
+    Variable                        Coeff      Std Error      T-Stat      Signif
+************************************************************************************
+1.  CONSTANT                      0.003844793  0.000683903      5.62184  0.00000003
+2.  AR{1}                         0.290354553  0.484454476      0.59934  0.54922383
+3.  MA{1}                        -0.556794226  0.485359352     -1.14718  0.25187310
+4.  MA{2}                        -0.137833740  0.137726044     -1.00078  0.31743127
+5.  MA{3}                         0.082433978  0.107368024      0.76777  0.44299730
+
+Inverse Roots of AR and MA polynomials
+Absolute Value of MA Roots
+1   0.379356
+2   0.425718
+3   0.510432
+
+Absolute Value of AR Roots
+1   0.290355
+2   1.000000
+
+```
+
+
+<p align="center">
+  <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi311.png" width="45%">
+  <img src = "https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi312.png" width="45%">
+</p>
 
 ### Forecasts:
-
+```
 **Random Simulation Forecast:**  
 forecast for 2025:05    2283.81536  
 forecast for 2025:11    2240.53694  
-forecast for 2029:01    2614.70652  
-![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi313.png"]
-
+forecast for 2029:01    2614.70652 
+```
+<p align="center">
+  <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi313.png" width="70%">
+</p>
+```
 **Bootstrap Forecast:**  
 forecast for 2025:05    2376.59793  
 forecast for 2025:11    2529.02747  
 forecast for 2029:01    2736.78437
-
-![]["https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi314.png"]
-
+```
+<p align="center">
+  <img src="https://github.com/chuckles023/Post-Pandemic-Durable-Consumer-Spending-Analysis/blob/main/images/pi314.png" width="70%">
+</p>
 ## Conclusion:
 
 From the research I can determine that excess household savings are in fact going down, but I believe that they will deviate towards the trend and will recover over the next couple years as we see inflation cool down, as it was at its peak in June 2022\.  Consumer spending overall was very different during the pandemic which had an effect on how savings were used, which will also return to the pre-pandemic trend. The stochastic trend model predicts a sustained increase in durable goods spending through 2029, providing a robust basis for investment decisions. While uncertainties remain, such as potential economic shocks, the forecast supports confidence in market stability and growth in the durable goods sector.  
