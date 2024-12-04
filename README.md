@@ -327,9 +327,9 @@ Absolute Value of AR Roots
 
 
 **Random Simulation Forecast:**  
-forecast for 2025:05    2283.81536  
-forecast for 2025:11    2240.53694  
-forecast for 2029:01    2614.70652 
+6 month forecast level of PCEDG    2283.81536  
+1 Year forecast level of PCEDG     2240.53694  
+5 Year forecast level of PCEDG     2614.70652 
 
 
 <p align="center">
@@ -338,9 +338,9 @@ forecast for 2029:01    2614.70652
 
 
 **Bootstrap Forecast:**  
-forecast for 2025:05    2376.59793  
-forecast for 2025:11    2529.02747  
-forecast for 2029:01    2736.78437
+6 month forecast level of PCEDG    2376.59793  
+1 year forecast level of PCEDG     2529.02747  
+5 year forecast level of PCEDG     2736.78437
 
 
 <p align="center">
