@@ -1,10 +1,9 @@
 # Post Pandemic Durable Consumer Spending Analysis
 
-# ---
 
 November 29 2024
 
-**This analysis examines the unique shifts in consumer behavior during and after the pandemic, particularly how stimulus checks influenced spending on durable goods. Findings highlight the rapid rebound of goods spending compared to services and the depletion of pandemic-era excess savings. Using advanced econometric models, this report forecasts consumer spending on durable goods through 2029, providing actionable insights for strategic investments in a recovering economy.**
+This analysis examines the unique shifts in consumer behavior during and after the pandemic, particularly how stimulus checks influenced spending on durable goods. Findings highlight the rapid rebound of goods spending compared to services and the depletion of pandemic-era excess savings. Using advanced econometric models, this report forecasts consumer spending on durable goods through 2029, providing actionable insights for strategic investments in a recovering economy.
 
 Durable goods play an important role in forecasting demand and understanding consumer behavior.  Durable goods are physical products with longer life spans and are associated with significant investment and infrequent purchase cycles.  They are very sensitive to economic conditions, making them a good indicator of consumer confidence.  As the economy recovers from the Covid-19 downturn, understanding how durable goods will perform over the next 5 years can be important to inventory decision making, helping businesses align supply with shifting customer demand.  
 
